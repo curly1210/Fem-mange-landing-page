@@ -42,7 +42,7 @@
   --size-800: 4rem;
   --size-900: 5rem;
 
-  
+
 }
 
 @media (min-width: 50rem) {
@@ -165,6 +165,10 @@ p[data-width="wide"] {
   box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
 }
 
+.button[data-shadow="none"] {
+  box-shadow: none;
+}
+
 .button[data-type="inverted"] {
   background-color: var(--clr-neutral-100);
   color: var(--clr-accent-400);
@@ -261,6 +265,113 @@ p[data-width="wide"] {
 
 .mobile-nav-toggle .icon-close {
   display: none;
+}
+
+/* footer navigation*/
+.primary-footer {
+  --logo-color: var(--clr-neutral-100)
+}
+
+.primary-footer-wrapper {
+  display: grid;
+  gap: var(--size-600) ;
+  grid-template-areas: 
+   'form'
+   'nav'
+   'logo-social';
+}
+
+
+.primary-footer-logo-social  {
+  grid-area: logo-social;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--size-700);
+  align-items: center;
+}
+
+.primary-footer-nav {
+  grid-area: nav;
+}
+
+.primary-footer-form {
+  grid-area: form;
+
+  display: grid;
+  align-content: space-between;
+}
+
+.primary-footer-form form {
+  display: flex;
+  gap: var(--size-200);
+}
+
+.primary-footer-form input {
+  border-radius: 100vh;
+  border: 0;
+  padding: var(--size-300) var(--size-400);
+}
+
+@media (min-width: 50em) {
+  .primary-footer-wrapper {
+    grid-template-areas: "logo-social nav form";
+  }
+
+  .primary-footer-logo-social  {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between  ;
+  }
+  
+}
+
+@media (max-width: 50em) {
+  .primary-footer-wrapper > *{
+    /* outline: 2px solid red; */
+    margin-inline: auto;
+  }
+  
+}
+
+
+.footer-nav {
+  columns: 2;
+  gap: max(5vw, 2rem);
+}
+
+.footer-nav a {
+  color: var(--clr-neutral-100);
+  text-decoration: none;
+}
+
+.footer-nav a:where(:hover, :focus) {
+  color: var(--clr-accent-400);
+}
+
+/* social List */
+.social-list {
+  display: flex;
+  gap: var(--size-600);
+}
+
+.social-icon {
+  width: var(--size-600);
+  fill: var(--clr-neutral-100);
+  aspect-ratio: 1;
+}
+
+.social-list a:is(:hover, :focus) .social-icon {
+  fill: var(--clr-accent-400)
+}
+
+@media (min-width: 50rem) {
+  .social-list {
+    gap: var(--size-300);
+  }
+
+  .social-icon {
+    width: var(--size-500);
+  }
 }
 
 /* CTA */
