@@ -78,7 +78,8 @@ html:focus-within {
 }
 
 html,body {
-  height: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -223,9 +224,13 @@ p[data-width="wide"] {
 }
 
 @media (max-width: 50em) {
+  .primary-header[data-overlay] {
+    position: relative;
+    z-index: 999;
+  }
+
   .primary-navigation {
     display: none;
-    z-index: 100;
     position: fixed;
     inset: 7rem var(--size-400) auto;
     background: var(--clr-neutral-100);
@@ -259,12 +264,21 @@ p[data-width="wide"] {
     position: fixed;
     top: var(--size-600);
     right: var(--size-400);
+    cursor: pointer;
+    width: 1.5em;
+    aspect-ratio: 1;
+
+    background-image: url(/images/icon-hamburger.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .mobile-nav-toggle[aria-expaned="true"] {
+    background-image: url(/images/icon-close.svg);
   }
 }
 
-.mobile-nav-toggle .icon-close {
-  display: none;
-}
 
 /* footer navigation*/
 .primary-footer {
@@ -481,7 +495,13 @@ p[data-width="wide"] {
 
 .a11y-slider-container {
   margin-block: var(--size-700);
-  margin-inline: var(--size-400);
+}
+
+@media (max-width:50em) {
+  .a11y-slider-container {
+    margin-inline: var(--size-400);
+
+  }  
 }
 
 .slider > * {
@@ -548,6 +568,61 @@ p[data-width="wide"] {
   }
 } */
 
+/* hero image */
+
+@media (max-width: 50em) {
+  .hero__image {
+    order: -1;
+  }
+  
+}
+
+.hero__image::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  top: 0;
+  width: 87%;
+  max-height: 70vh;
+  aspect-ratio: 1 /1.2;
+  background-image: url(images/bg-tablet-pattern.svg);
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  /* border: 1px solid red; */
+}
+
+@media (min-width: 50em) {
+  .hero__image::before {
+    width: 45%;
+  }
+}
+
+/* sales points */
+
+.sales-points__blog {
+  position: relative;
+}
+
+.sales-points__blog::before {
+  content: url(images/bg-tablet-pattern.svg);
+  position: absolute;
+  zoom: 40%;
+  z-index: -1;
+  bottom: 100%;
+  left: 70%;
+  width: 100px;
+}
+
+@media (min-width:50em) {
+  .sales-points__blog::before {
+    zoom: 75%;
+    z-index: -1;
+    top: 250%;
+    left: -700px;
+    width: 100px;
+  }
+}
 
 /* utilities class */
 
@@ -653,6 +728,10 @@ p[data-width="wide"] {
 
 .margin-bottom-700 {
   margin-block-end: var(--size-700);
+}
+
+.mx-auto {
+  margin-inline: auto;
 }
 
 .display-sm-none {
